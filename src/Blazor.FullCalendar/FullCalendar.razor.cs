@@ -68,8 +68,7 @@ public partial class FullCalendar : ComponentBase
 
         return Math.Abs(difference);
     }
-        
-    
+
     /// <summary>
     /// Calculates the first <see cref="DateTime"/> of the month based on the input <see cref="DateTime"/>.  
     /// </summary>
