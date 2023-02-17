@@ -1,19 +1,19 @@
 ﻿<div id="root" class="container">
     <div class="row">
+        <div class="header">SUN</div>
         <div class="header">MON</div>
         <div class="header">TUE</div>
         <div class="header">WED</div>
         <div class="header">THU</div>
         <div class="header">FRI</div>
         <div class="header">SAT</div>
-        <div class="header">SUN</div>
     </div>
-    @for (var w = 0; w < 5; w++)
+    @for (var w = 0; w < AmountOfDisplayedWeeks; w++)
     {
         <div class="row">
-            @for (var d = 1; d < 8; d++)
+            @for (var d = 0; d < AmountOfDisplayedDays; d++)
             {
-                <div class="item">@(w * 7 + d)</div>
+                <div class="item">@CalculateDay(w, d)</div>
             }
         </div>
     }
