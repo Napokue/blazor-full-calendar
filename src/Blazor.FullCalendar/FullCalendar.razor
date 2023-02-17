@@ -12,7 +12,10 @@
         <div class="row">
             @for (var d = 0; d < AmountOfDisplayedDays; d++)
             {
-                <div class="item">@CalculateDay(w, d)</div>
+                var day = CalculateDay(w, d);
+                <div class="item">
+                    <h2 class="@(_today.Day == day ? "today" : string.Empty)">@day</h2>
+                </div>
             }
         </div>
     }
