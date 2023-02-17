@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.FullCalendar", "src\Blazor.FullCalendar\Blazor.FullCalendar.csproj", "{441CAD00-2749-453B-B3F8-3A49024BEFE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{EA8E4D50-26DA-4343-A32B-FC847F00DF54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCalendar", "samples\SimpleCalendar\SimpleCalendar.csproj", "{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,12 @@ Global
 		{441CAD00-2749-453B-B3F8-3A49024BEFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{441CAD00-2749-453B-B3F8-3A49024BEFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{441CAD00-2749-453B-B3F8-3A49024BEFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5C64FE1-68DD-437D-9079-B8ED45E5D3F3} = {EA8E4D50-26DA-4343-A32B-FC847F00DF54}
 	EndGlobalSection
 EndGlobal
