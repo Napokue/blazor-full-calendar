@@ -35,7 +35,7 @@ public partial class FullCalendar : ComponentBase
     /// <param name="week">Current displayed week.</param>
     /// <param name="day">Current displayed day.</param>
     /// <returns>Returns the day based on the displayed week and day.</returns>
-    private int CalculateDay(int week, int day) => _firstDateOfCalendar.AddDays(week * AmountOfDisplayedDays + day).Day;
+    private DateOnly CalculateDay(int week, int day) => _firstDateOfCalendar.AddDays(week * AmountOfDisplayedDays + day);
     
     /// <summary>
     /// Calculates first date of the calendar based on the configured starting day of the week. 
