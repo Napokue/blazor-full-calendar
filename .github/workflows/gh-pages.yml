@@ -6,6 +6,7 @@ env:
   NETCORE_VERSION: '7.0.x'
   OUTPUT_DIR: 'net7.0'
   PROJECT_NAME: Blazor.FullCalendar
+  REPO_NAME: blazor-full-calendar
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
@@ -37,7 +38,7 @@ jobs:
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
           html_path: samples/BlazorWebAssembly/bin/Release/${{ env.OUTPUT_DIR }}/publish/wwwroot/index.html
-          base_href: /${{ env.PROJECT_NAME }}/
+          base_href: /${{ env.REPO_NAME }}/
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
         run: touch samples/BlazorWebAssembly/bin/Release/${{ env.OUTPUT_DIR }}/publish/wwwroot/.nojekyll
