@@ -38,6 +38,9 @@ jobs:
         with:
           html_path: samples/BlazorWebAssembly/bin/Release/${{ env.OUTPUT_DIR }}/publish/wwwroot/index.html
           base_href: /${{ env.PROJECT_NAME }}/
+      # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+      - name: Add .nojekyll file
+        run: touch samples/BlazorWebAssembly/bin/Release/${{ env.OUTPUT_DIR }}/publish/wwwroot/.nojekyll
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
       - name: Deploy to GitHub Pages
