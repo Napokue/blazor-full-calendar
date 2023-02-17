@@ -1,12 +1,11 @@
-﻿<div id="root" class="container">
+﻿@using Blazor.FullCalendar.Services
+
+<div id="root" class="container">
     <div class="row">
-        <div class="header">SUN</div>
-        <div class="header">MON</div>
-        <div class="header">TUE</div>
-        <div class="header">WED</div>
-        <div class="header">THU</div>
-        <div class="header">FRI</div>
-        <div class="header">SAT</div>
+        @foreach (var day in _days)
+        {
+            <div class="header">@day</div>
+        }
     </div>
     @for (var w = 0; w < AmountOfDisplayedWeeks; w++)
     {

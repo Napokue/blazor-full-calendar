@@ -1,19 +1,23 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazor.FullCalendar.Services;
+using Microsoft.AspNetCore.Components;
 
 namespace Blazor.FullCalendar;
 
 public partial class FullCalendar : ComponentBase
 {
+    private const DayOfWeek StartingDay = DayOfWeek.Sunday;
     private const byte AmountOfDisplayedDays = 7;
     private const byte AmountOfDisplayedWeeks = 5;
     
     private readonly DateTime _today;
     private readonly DateOnly _firstDateOfCalendar;
+    private readonly IReadOnlyList<string> _days;
 
     public FullCalendar()
     {
         _today = DateTime.Today;
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
+        _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
 
     /// <summary>
@@ -34,7 +38,7 @@ public partial class FullCalendar : ComponentBase
         var firstDayOfMonth = FirstDayOfMonth(dateTime);
         return DateOnly.FromDateTime(
             firstDayOfMonth.Subtract(
-                TimeSpan.FromDays(CalculateDayDifference(DayOfWeek.Sunday, firstDayOfMonth.DayOfWeek))));
+                TimeSpan.FromDays(CalculateDayDifference(StartingDay, firstDayOfMonth.DayOfWeek))));
     }
 
     /// <summary>
