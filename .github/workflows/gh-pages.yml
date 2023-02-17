@@ -9,7 +9,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
-    name: Build ${{ env.PROJECT_NAME }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
