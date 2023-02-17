@@ -1,11 +1,20 @@
 ﻿<div id="root" class="container">
+    <div class="row">
+        <div class="header">MON</div>
+        <div class="header">TUE</div>
+        <div class="header">WED</div>
+        <div class="header">THU</div>
+        <div class="header">FRI</div>
+        <div class="header">SAT</div>
+        <div class="header">SUN</div>
+    </div>
     @for (var w = 0; w < 5; w++)
     {
         <div class="row">
-        @for (var d = 1; d < 8; d++)
-        {
-            <div class="item">@(w * 7 + d)</div>
-        }
+            @for (var d = 1; d < 8; d++)
+            {
+                <div class="item">@(w * 7 + d)</div>
+            }
         </div>
     }
 </div>

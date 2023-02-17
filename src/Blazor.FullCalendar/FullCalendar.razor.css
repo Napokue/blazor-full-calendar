@@ -1,6 +1,6 @@
 ﻿#root {
     --hairline: rgb(218, 220, 224);
-    --background: #fff
+    --background: #fff;
 }
 
 .container {
@@ -19,6 +19,14 @@
 
 .row:not(:last-child) {    
     border-bottom: var(--hairline) 1px solid;
+}
+
+.header {
+    width: calc(100% / 7 - 6px);
+}
+
+.header:not(:last-child) {
+    border-right: var(--hairline) 1px solid;
 }
 
 .item {
