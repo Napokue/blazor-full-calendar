@@ -1,3 +1,11 @@
-﻿<div class="my-component">
-    This component is defined in the <strong>Blazor.FullCalendar</strong> library.
+﻿<div id="root" class="container">
+    @for (var w = 0; w < 5; w++)
+    {
+        <div class="row">
+        @for (var d = 1; d < 8; d++)
+        {
+            <div class="item">@(w * 7 + d)</div>
+        }
+        </div>
+    }
 </div>
