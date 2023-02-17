@@ -25,7 +25,17 @@ internal static class WeekService
         {
             return Days;
         }
+
+        var startingDayInt = (int) startingDay;
+
+        var sortedDays = new List<string>();
+        sortedDays.InsertRange(0, Days.Skip(startingDayInt));
+
+        for (var i = 0; i < startingDayInt; i++)
+        {
+            sortedDays.Add(Days[i]);
+        }
         
-        return Days;
+        return sortedDays;
     } 
 }

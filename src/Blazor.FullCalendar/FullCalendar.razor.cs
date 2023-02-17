@@ -38,7 +38,7 @@ public partial class FullCalendar : ComponentBase
         var firstDayOfMonth = FirstDayOfMonth(dateTime);
         return DateOnly.FromDateTime(
             firstDayOfMonth.Subtract(
-                TimeSpan.FromDays(CalculateDayDifference(StartingDay, firstDayOfMonth.DayOfWeek))));
+                TimeSpan.FromDays(CalculateDayDifference(firstDayOfMonth.DayOfWeek, StartingDay))));
     }
 
     /// <summary>
@@ -47,8 +47,19 @@ public partial class FullCalendar : ComponentBase
     /// <param name="startingDay">Starting day of the week.</param>
     /// <param name="currentDay">Current day of the week.</param>
     /// <returns>Return the difference between the starting and current day of the week.</returns>
-    private static int CalculateDayDifference(DayOfWeek startingDay, DayOfWeek currentDay) =>
-        Math.Abs((int) startingDay - (int) currentDay);
+    private static int CalculateDayDifference(DayOfWeek currentDay, DayOfWeek startingDay)
+    {
+        var difference = (int) currentDay - (int) startingDay;
+
+        // If the difference is negative, this means the current day is not in the week of the starting day, but a week before.
+        if (difference < 0)
+        {
+            difference += AmountOfDisplayedDays;
+        }
+
+        return Math.Abs(difference);
+    }
+        
     
     /// <summary>
     /// Calculates the first <see cref="DateTime"/> of the month based on the input <see cref="DateTime"/>.  
