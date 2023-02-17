@@ -16,7 +16,9 @@
             {
                 var day = CalculateDay(w, d);
                 <div class="item">
-                    <h2 class="@(_today.Day == day ? "today" : string.Empty)">@day</h2>
+                    <h2 class="@(_today.Day == day && _today.Month == _firstDayOfMonth.Month && _today.Year == _firstDayOfMonth.Year ? "today" : string.Empty)">
+                        @day
+                    </h2>
                 </div>
             }
         </div>
