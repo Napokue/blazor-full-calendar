@@ -1,0 +1,61 @@
+/* _content/Blazor.FullCalendar/FullCalendar.razor.rz.scp.css */
+#root[b-j5dehcpm7o] {
+    --hairline: rgb(218, 220, 224);
+    --background: #fff;
+    --primary: rgb(26,115,232)
+}
+
+.container[b-j5dehcpm7o] {
+    background-color: var(--background);
+    border: var(--hairline) 1px solid;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.row[b-j5dehcpm7o] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.row:not(:last-child)[b-j5dehcpm7o] {    
+    border-bottom: var(--hairline) 1px solid;
+}
+
+.header[b-j5dehcpm7o] {
+    width: 100px;
+    flex: 1;
+}
+
+.header:not(:last-child)[b-j5dehcpm7o] {
+    border-right: var(--hairline) 1px solid;
+}
+
+.item[b-j5dehcpm7o] {
+    width: 100px;
+    height: 100px;
+    flex: 1;
+}
+
+.item:not(:last-child)[b-j5dehcpm7o] {
+    border-right: var(--hairline) 1px solid;
+}
+
+.item > h2[b-j5dehcpm7o] {
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    min-width: 24px;
+    width: max-content;
+    font-weight: 500;
+    height: 24px;
+    line-height: 24px;
+}
+
+.today[b-j5dehcpm7o] {
+    color: white;
+    background-color: var(--primary);
+    border-radius: 50%;    
+}
