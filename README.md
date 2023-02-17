@@ -3,6 +3,9 @@
 
 Full Calendar control for Blazor applications.
 
+# Live demo
+Demo is powered by Github Pages and is reachable on the following URL: https://napokue.github.io/blazor-full-calendar/.
+
 # Conventional Commits
 This repository commits based on the [Conventional Commits](https://conventionalcommits.org) specification.
 
