@@ -22,7 +22,8 @@
 }
 
 .header {
-    width: calc(100% / 7 - 6px);
+    width: 100px;
+    flex: 1;
 }
 
 .header:not(:last-child) {
@@ -30,8 +31,9 @@
 }
 
 .item {
-    width: calc(100% / 7 - 6px);
+    width: 100px;
     height: 100px;
+    flex: 1;
 }
 
 .item:not(:last-child) {
