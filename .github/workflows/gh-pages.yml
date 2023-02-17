@@ -3,13 +3,13 @@ name: Github Pages
 on:
   [workflow_dispatch]
 env:
-  PROJECT_NAME: Blazor.FullCalendar
-  OUTPUT_DIR: 'net7.0'
   NETCORE_VERSION: '7.0.x'
+  OUTPUT_DIR: 'net7.0'
+  PROJECT_NAME: Blazor.FullCalendar
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
-    name: Build $PROJECT_NAME
+    name: Build ${{ env.PROJECT_NAME }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
