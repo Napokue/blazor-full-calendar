@@ -1,5 +1,6 @@
 ﻿using Blazor.FullCalendar.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Blazor.FullCalendar;
 
@@ -17,8 +18,9 @@ public partial class FullCalendar : ComponentBase
     private const byte AmountOfDisplayedWeeks = 6;
     
     private readonly DateTime _today;
-    private readonly DateOnly _firstDateOfCalendar;
+    private DateOnly _firstDateOfCalendar;
     private readonly IReadOnlyList<string> _days;
+    private DateTime _firstDayOfMonth;
 
     public FullCalendar()
     {
@@ -42,10 +44,10 @@ public partial class FullCalendar : ComponentBase
     /// <returns>Returns the first date of the calendar.</returns>
     private DateOnly CalculateFirstDateOfCalendar(DateTime dateTime)
     {
-        var firstDayOfMonth = FirstDayOfMonth(dateTime);
+        _firstDayOfMonth = FirstDayOfMonth(dateTime);
         return DateOnly.FromDateTime(
-            firstDayOfMonth.Subtract(
-                TimeSpan.FromDays(CalculateDayDifference(firstDayOfMonth.DayOfWeek, StartingDay))));
+            _firstDayOfMonth.Subtract(
+                TimeSpan.FromDays(CalculateDayDifference(_firstDayOfMonth.DayOfWeek, StartingDay))));
     }
 
     /// <summary>
@@ -73,5 +75,22 @@ public partial class FullCalendar : ComponentBase
     /// </summary>
     /// <param name="dateTime"><see cref="DateTime"/> that is used to calculate the first <see cref="DateTime"/> of the month with.</param>
     /// <returns>Returns first <see cref="DateTime"/> of the month.</returns>
-    private DateTime FirstDayOfMonth(DateTime dateTime) => _today.Subtract(TimeSpan.FromDays(_today.Day - 1));
+    private DateTime FirstDayOfMonth(DateTime dateTime) => dateTime.Subtract(TimeSpan.FromDays(dateTime.Day - 1));
+    
+    private void OnWheel(WheelEventArgs e)
+    {
+        // Scrolling up
+        if (e.DeltaY < 0)
+        {
+            var dateTime = _firstDayOfMonth.AddMonths(-1);
+            _firstDateOfCalendar = CalculateFirstDateOfCalendar(dateTime);
+        }
+
+        // Scrolling down
+        if (e.DeltaY > 0)
+        {
+            var dateTime = _firstDayOfMonth.AddMonths(1);
+            _firstDateOfCalendar = CalculateFirstDateOfCalendar(dateTime);
+        }
+    }
 }

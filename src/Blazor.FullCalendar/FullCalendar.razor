@@ -1,6 +1,7 @@
 ﻿@using Blazor.FullCalendar.Services
+@using Microsoft.AspNetCore.Components.Web
 
-<div id="root" class="container">
+<div id="root" class="container" @onwheel="OnWheel">
     <div class="row">
         @foreach (var day in _days)
         {
