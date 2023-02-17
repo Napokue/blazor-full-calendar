@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.Web
 
 <div id="root" class="container" @onwheel="OnWheel">
+    <h1>@_firstDayOfMonth.ToString("MMMM yyyy")</h1>
     <div class="row">
         @foreach (var day in _days)
         {
