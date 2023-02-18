@@ -59,3 +59,27 @@
     background-color: var(--primary);
     border-radius: 50%;    
 }
+
+.menu[b-j5dehcpm7o] {
+    display: flex;
+    flex: 1 1 100%;
+    vertical-align: middle;
+    align-items: center;
+}
+
+#btn-today[b-j5dehcpm7o] {
+    height: 36px;
+    margin: 0 12px;
+    padding: 0 12px;
+    background-color: transparent;
+    border: var(--hairline) 1px solid;;
+    border-radius: 4px;
+}
+
+#btn-today:hover[b-j5dehcpm7o] {
+    filter: brightness(90%);
+}
+
+#btn-today:active[b-j5dehcpm7o] {
+    filter: brightness(50%);
+}

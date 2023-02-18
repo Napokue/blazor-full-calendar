@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Blazor.FullCalendar.dll": "sha256-aJs+D8yIFR28wp5kKMwDe5ZlSo0kh+XAAbAuqkSYdNk=",
+      "Blazor.FullCalendar.dll": "sha256-ucz06jW77fkxQdV150Atk28QByVG6oS+qNuJmBvlkKA=",
       "BlazorWebAssembly.dll": "sha256-5g5C8NrqqLkUmTPSVqX+JaoP7Opt47Xci755Irq\/Sac=",
-      "Microsoft.AspNetCore.Components.dll": "sha256-inuK\/dXIdop6DVJ2eL6Bka9WH7PAe02sf\/9fJHnUQyo=",
+      "Microsoft.AspNetCore.Components.dll": "sha256-L41eDxF1Y\/Hq9Y1d6BOfJH95m\/9flbjIaxiSUgQZHms=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-YotXvedbitX25hEs0v2r\/QFU+NPqkDDL+mV9HLDuxao=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-2Jg3mQhCSyqkofbgXHMRw0whL7fAl07+VKYd0lApk7I=",
       "Microsoft.Extensions.Configuration.Abstractions.dll": "sha256-X\/f4fDl2cuIRXeWHhK\/f2UqQbFioD+RU4a4CEh0zrrQ=",
@@ -32,7 +32,7 @@
       "System.Net.Primitives.dll": "sha256-RhYVZVSmp6NVaHhK5mpfhrKNfa6Hj70jk6u3M2wfA9M=",
       "System.Private.CoreLib.dll": "sha256-HQaXlDJdql7qzNL1EXgz4QuOvwg58PbQAJKsRj3VjQk=",
       "System.Private.Uri.dll": "sha256-spjgiwgMw9++BIvbuu9vetRH7KPDN4vjEcjOww6zaAw=",
-      "System.Runtime.dll": "sha256-\/PBjL4eJ\/09ewsoA45dH6JRkBB+tlxDSIJuqYMBjNco=",
+      "System.Runtime.dll": "sha256-ZEhoY9r7uRNJt5Pw2WeRdmR0DiJZ8xypMLKCI4WJr4o=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-KNY5FShd27atLbYaDacx7WG\/VKA3zVwWCEWB66TgF0Y=",
       "System.Text.Encodings.Web.dll": "sha256-hnmkcWS1u4akDjNnEVBY3N9HGT+VmFajs8yg5AdB2mo=",
       "System.Text.Json.dll": "sha256-uumhOX8jgRcTLVxDDdu8L9T3hB\/q583FLVwnxH6J5GQ="
