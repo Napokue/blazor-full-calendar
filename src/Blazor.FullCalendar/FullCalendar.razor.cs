@@ -92,4 +92,9 @@ public partial class FullCalendar : ComponentBase
             _firstDateOfCalendar = CalculateFirstDateOfCalendar(dateTime);
         }
     }
+    
+    private void NavigateToToday()
+    {
+        _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
+    }
 }
