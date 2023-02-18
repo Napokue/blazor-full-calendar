@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Blazor.FullCalendar.dll": "sha256-3MCxy9SDvfHYI+zUnFqTa1lUVs6GWemZAUmQRs5rX4A=",
+      "Blazor.FullCalendar.dll": "sha256-aJs+D8yIFR28wp5kKMwDe5ZlSo0kh+XAAbAuqkSYdNk=",
       "BlazorWebAssembly.dll": "sha256-5g5C8NrqqLkUmTPSVqX+JaoP7Opt47Xci755Irq\/Sac=",
       "Microsoft.AspNetCore.Components.dll": "sha256-inuK\/dXIdop6DVJ2eL6Bka9WH7PAe02sf\/9fJHnUQyo=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-YotXvedbitX25hEs0v2r\/QFU+NPqkDDL+mV9HLDuxao=",
@@ -30,7 +30,7 @@
       "System.Memory.dll": "sha256-gDaKbsx6vP0iZXZw2UKct1OanzfmCr3BInmcHEEbdtQ=",
       "System.Net.Http.dll": "sha256-Luup+JuCrcEpu6g8RWfzi7IILtKE0QHFroFimAv6BBU=",
       "System.Net.Primitives.dll": "sha256-RhYVZVSmp6NVaHhK5mpfhrKNfa6Hj70jk6u3M2wfA9M=",
-      "System.Private.CoreLib.dll": "sha256-tWcjJW1urhFgrnkBuz4C7uGLNVPMT62MC447ImzRmtU=",
+      "System.Private.CoreLib.dll": "sha256-HQaXlDJdql7qzNL1EXgz4QuOvwg58PbQAJKsRj3VjQk=",
       "System.Private.Uri.dll": "sha256-spjgiwgMw9++BIvbuu9vetRH7KPDN4vjEcjOww6zaAw=",
       "System.Runtime.dll": "sha256-\/PBjL4eJ\/09ewsoA45dH6JRkBB+tlxDSIJuqYMBjNco=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-KNY5FShd27atLbYaDacx7WG\/VKA3zVwWCEWB66TgF0Y=",
