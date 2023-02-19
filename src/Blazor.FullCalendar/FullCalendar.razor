@@ -25,9 +25,12 @@
                     <h2 class="@(_today.Day == day.Day && _today.Month == day.Month && _today.Year == day.Year ? "today" : string.Empty)">
                         @if (day.Day == 1)
                         {
-                            @($"{day.ToString("MMM")} ")
+                            @SetFirstDayOfMonthDisplayInternal(day)
                         }
-                        @day.Day
+                        else
+                        {
+                            @SetDayDisplayInternal(day)
+                        }
                     </h2>
                 </div>
             }

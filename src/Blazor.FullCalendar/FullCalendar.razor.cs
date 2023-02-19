@@ -8,6 +8,8 @@ public partial class FullCalendar : ComponentBase
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
     [Parameter] public Func<DateTime, string>? SetMenuDateDisplay { get; set; }
+    [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
+    [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
 
     private const DayOfWeek StartingDay = DayOfWeek.Sunday;
     
@@ -104,4 +106,12 @@ public partial class FullCalendar : ComponentBase
     private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null
         ? SetMenuDateDisplay(_firstDayOfMonth)
         : _firstDayOfMonth.ToString("MMMM yyyy");
+
+    private string SetFirstDayOfMonthDisplayInternal(DateOnly day) => SetFirstDayOfMonthDisplay != null
+        ? SetFirstDayOfMonthDisplay(day)
+        : $"{day.ToString("MMM")} {day.Day}";
+
+    private string SetDayDisplayInternal(DateOnly day) => SetDayDisplay != null
+        ? SetDayDisplay(day)
+        : $"{day.Day}";
 }
