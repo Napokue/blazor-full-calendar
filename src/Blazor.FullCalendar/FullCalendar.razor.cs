@@ -7,6 +7,7 @@ namespace Blazor.FullCalendar;
 public partial class FullCalendar : ComponentBase
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
+    [Parameter] public Func<DateTime, string>? SetMenuDateDisplay { get; set; }
 
     private const DayOfWeek StartingDay = DayOfWeek.Sunday;
     
@@ -99,4 +100,8 @@ public partial class FullCalendar : ComponentBase
     {
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
     }
+
+    private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null
+        ? SetMenuDateDisplay(_firstDayOfMonth)
+        : _firstDayOfMonth.ToString("MMMM yyyy");
 }

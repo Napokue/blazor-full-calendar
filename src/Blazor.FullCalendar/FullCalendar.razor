@@ -6,7 +6,7 @@
     {
         <div class="menu">
             <button id="btn-today" @onclick="NavigateToToday">Today</button>
-            <h1>@_firstDayOfMonth.ToString("MMMM yyyy")</h1>
+            <h1>@SetMenuDateDisplayInternal()</h1>
         </div>
     }
     <div class="row">
