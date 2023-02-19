@@ -6,6 +6,8 @@ namespace Blazor.FullCalendar;
 
 public partial class FullCalendar : ComponentBase
 {
+    [Parameter] public bool EnableMenu { get; set; } = true;
+
     private const DayOfWeek StartingDay = DayOfWeek.Sunday;
     
     /// <summary>

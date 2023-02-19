@@ -2,10 +2,13 @@
 @using Microsoft.AspNetCore.Components.Web
 
 <div id="root" class="container" @onwheel="OnWheel">
-    <div class="menu">
-        <button id="btn-today" @onclick="NavigateToToday">Today</button>
-        <h1>@_firstDayOfMonth.ToString("MMMM yyyy")</h1>
-    </div>
+    @if (EnableMenu)
+    {
+        <div class="menu">
+            <button id="btn-today" @onclick="NavigateToToday">Today</button>
+            <h1>@_firstDayOfMonth.ToString("MMMM yyyy")</h1>
+        </div>
+    }
     <div class="row">
         @foreach (var day in _days)
         {
