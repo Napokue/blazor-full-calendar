@@ -21,8 +21,15 @@
             @for (var d = 0; d < AmountOfDisplayedDays; d++)
             {
                 var day = CalculateDay(w, d);
+                var todayClass = string.Empty;
                 <div class="item">
-                    <h2 class="@(_today.Day == day.Day && _today.Month == day.Month && _today.Year == day.Year ? "today" : string.Empty)">
+                    @if (EnableHighlightToday)
+                    {
+                        todayClass =
+                            _today.Day == day.Day && _today.Month == day.Month && _today.Year == day.Year ? "today" : string.Empty;
+                    }
+                    
+                    <h2 class="@todayClass">
                         @if (EnableDistinctFirstDayOfMonth && day.Day == 1)
                         {
                             @SetFirstDayOfMonthDisplayInternal(day)

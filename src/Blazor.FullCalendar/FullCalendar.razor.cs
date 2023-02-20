@@ -8,9 +8,12 @@ public partial class FullCalendar : ComponentBase
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
     [Parameter] public bool EnableDistinctFirstDayOfMonth { get; set; } = true;
+    [Parameter] public bool EnableHighlightToday { get; set; } = true;
     [Parameter] public Func<DateOnly, string>? SetMenuDateDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
+
+    
 
     private const DayOfWeek StartingDay = DayOfWeek.Sunday;
     
