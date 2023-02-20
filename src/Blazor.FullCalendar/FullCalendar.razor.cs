@@ -31,11 +31,11 @@ public partial class FullCalendar : ComponentBase
     public FullCalendar()
     {
         _today = DateOnly.FromDateTime(DateTime.Today);
-        _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
     }
 
     protected override void OnInitialized()
     {
+        _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
 
