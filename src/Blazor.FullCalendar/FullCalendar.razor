@@ -25,8 +25,7 @@
                 <div class="item">
                     @if (EnableHighlightToday)
                     {
-                        todayClass =
-                            _today.Day == day.Day && _today.Month == day.Month && _today.Year == day.Year ? "today" : string.Empty;
+                        todayClass = _today.DayNumber == day.DayNumber ? "today" : string.Empty;
                     }
                     
                     <h2 class="@todayClass">
