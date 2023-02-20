@@ -82,7 +82,7 @@ public partial class FullCalendar : ComponentBase
     /// </summary>
     /// <param name="date"><see cref="DateOnly"/> that is used to calculate the first <see cref="DateOnly"/> of the month with.</param>
     /// <returns>Returns first <see cref="DateOnly"/> of the month.</returns>
-    private static DateOnly FirstDayOfMonth(DateOnly date) => date.AddDays(-1);
+    private static DateOnly FirstDayOfMonth(DateOnly date) => date.AddDays(0 - (date.Day - 1));
     
     private void OnWheel(WheelEventArgs e)
     {
