@@ -7,7 +7,7 @@ namespace Blazor.FullCalendar;
 public partial class FullCalendar : ComponentBase
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
-    [Parameter] public Func<DateTime, string>? SetMenuDateDisplay { get; set; }
+    [Parameter] public Func<DateOnly, string>? SetMenuDateDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
 
@@ -22,14 +22,14 @@ public partial class FullCalendar : ComponentBase
     private const byte AmountOfDisplayedDays = 7;
     private const byte AmountOfDisplayedWeeks = 6;
     
-    private readonly DateTime _today;
+    private readonly DateOnly _today;
     private DateOnly _firstDateOfCalendar;
     private readonly IReadOnlyList<string> _days;
-    private DateTime _firstDayOfMonth;
+    private DateOnly _firstDayOfMonth;
 
     public FullCalendar()
     {
-        _today = DateTime.Today;
+        _today = DateOnly.FromDateTime(DateTime.Today);
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
@@ -45,14 +45,12 @@ public partial class FullCalendar : ComponentBase
     /// <summary>
     /// Calculates first date of the calendar based on the configured starting day of the week. 
     /// </summary>
-    /// <param name="dateTime"><see cref="DateTime"/> used to calculate the first date of the calendar with.</param>
+    /// <param name="date"><see cref="DateOnly"/> used to calculate the first date of the calendar with.</param>
     /// <returns>Returns the first date of the calendar.</returns>
-    private DateOnly CalculateFirstDateOfCalendar(DateTime dateTime)
+    private DateOnly CalculateFirstDateOfCalendar(DateOnly date)
     {
-        _firstDayOfMonth = FirstDayOfMonth(dateTime);
-        return DateOnly.FromDateTime(
-            _firstDayOfMonth.Subtract(
-                TimeSpan.FromDays(CalculateDayDifference(_firstDayOfMonth.DayOfWeek, StartingDay))));
+        _firstDayOfMonth = FirstDayOfMonth(date);
+        return _firstDayOfMonth.AddDays(0 - CalculateDayDifference(_firstDayOfMonth.DayOfWeek, StartingDay));
     }
 
     /// <summary>
@@ -75,26 +73,26 @@ public partial class FullCalendar : ComponentBase
     }
 
     /// <summary>
-    /// Calculates the first <see cref="DateTime"/> of the month based on the input <see cref="DateTime"/>.  
+    /// Calculates the first <see cref="DateOnly"/> of the month based on the input <see cref="DateOnly"/>.  
     /// </summary>
-    /// <param name="dateTime"><see cref="DateTime"/> that is used to calculate the first <see cref="DateTime"/> of the month with.</param>
-    /// <returns>Returns first <see cref="DateTime"/> of the month.</returns>
-    private DateTime FirstDayOfMonth(DateTime dateTime) => dateTime.Subtract(TimeSpan.FromDays(dateTime.Day - 1));
+    /// <param name="date"><see cref="DateOnly"/> that is used to calculate the first <see cref="DateOnly"/> of the month with.</param>
+    /// <returns>Returns first <see cref="DateOnly"/> of the month.</returns>
+    private static DateOnly FirstDayOfMonth(DateOnly date) => date.AddDays(-1);
     
     private void OnWheel(WheelEventArgs e)
     {
         // Scrolling up
         if (e.DeltaY < 0)
         {
-            var dateTime = _firstDayOfMonth.AddMonths(-1);
-            _firstDateOfCalendar = CalculateFirstDateOfCalendar(dateTime);
+            var date = _firstDayOfMonth.AddMonths(-1);
+            _firstDateOfCalendar = CalculateFirstDateOfCalendar(date);
         }
 
         // Scrolling down
         if (e.DeltaY > 0)
         {
-            var dateTime = _firstDayOfMonth.AddMonths(1);
-            _firstDateOfCalendar = CalculateFirstDateOfCalendar(dateTime);
+            var date = _firstDayOfMonth.AddMonths(1);
+            _firstDateOfCalendar = CalculateFirstDateOfCalendar(date);
         }
     }
     
