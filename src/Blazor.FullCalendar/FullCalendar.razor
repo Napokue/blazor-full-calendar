@@ -42,7 +42,7 @@
                     
                     @if (_calendarEvents.TryGetValue(day.DayNumber, out var e))
                     {
-                        <h3>@e.Title</h3>
+                        <div class="event"><span>@e.Title</span></div>
                     }
                 </div>
             }

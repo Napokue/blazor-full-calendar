@@ -1,7 +1,7 @@
 ﻿#root {
     --hairline: rgb(218, 220, 224);
     --background: #fff;
-    --primary: rgb(26,115,232)
+    --primary: rgb(26,115,232);
 }
 
 .container {
@@ -81,4 +81,17 @@
 
 #btn-today:active {
     filter: brightness(50%);
+}
+
+.event {
+    background-color: rgb(3, 155, 229);
+    border-radius: 4px;
+    align-items: center;
+}
+
+.event > span {
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: 500;
 }
