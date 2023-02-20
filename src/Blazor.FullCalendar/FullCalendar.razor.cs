@@ -1,4 +1,5 @@
-﻿using Blazor.FullCalendar.Services;
+﻿using Blazor.FullCalendar.Models;
+using Blazor.FullCalendar.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -13,7 +14,7 @@ public partial class FullCalendar : ComponentBase
     [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
     [Parameter] public DayOfWeek StartingDay { get; set; } = DayOfWeek.Sunday;
-    
+
     /// <summary>
     /// The maximum amount of days that need to be displayed in a
     /// month are 31 (max amount of days in a month) + 6 (max amount of deviation between the starting day and first day of the month).
@@ -25,8 +26,10 @@ public partial class FullCalendar : ComponentBase
     
     private readonly DateOnly _today;
     private DateOnly _firstDateOfCalendar;
-    private IReadOnlyList<string>? _days;
     private DateOnly _firstDayOfMonth;
+    
+    private IReadOnlyList<string>? _days;
+    private Dictionary<int, CalendarEvent>? _calendarEvents; 
 
     public FullCalendar()
     {
@@ -35,6 +38,13 @@ public partial class FullCalendar : ComponentBase
 
     protected override void OnInitialized()
     {
+        _calendarEvents = new Dictionary<int, CalendarEvent>
+        {
+            [738570] = new()
+            {
+                Title = "Test"
+            }
+        };
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
