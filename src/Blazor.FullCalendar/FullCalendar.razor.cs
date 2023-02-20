@@ -38,13 +38,7 @@ public partial class FullCalendar : ComponentBase
 
     protected override void OnInitialized()
     {
-        _calendarEvents = new Dictionary<int, CalendarEvent>
-        {
-            [738570] = new()
-            {
-                Title = "Test"
-            }
-        };
+        _calendarEvents = new Dictionary<int, CalendarEvent>();
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
@@ -114,6 +108,14 @@ public partial class FullCalendar : ComponentBase
     private void NavigateToToday()
     {
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
+    }
+
+    private void OnDayClick(DateOnly date)
+    {
+        _calendarEvents.TryAdd(date.DayNumber, new CalendarEvent
+        {
+            Title = $"Test: {date.DayNumber}"
+        });
     }
 
     private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null
