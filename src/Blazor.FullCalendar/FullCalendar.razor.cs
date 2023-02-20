@@ -12,10 +12,7 @@ public partial class FullCalendar : ComponentBase
     [Parameter] public Func<DateOnly, string>? SetMenuDateDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
-
-    
-
-    private const DayOfWeek StartingDay = DayOfWeek.Sunday;
+    [Parameter] public DayOfWeek StartingDay { get; set; } = DayOfWeek.Sunday;
     
     /// <summary>
     /// The maximum amount of days that need to be displayed in a
@@ -28,13 +25,17 @@ public partial class FullCalendar : ComponentBase
     
     private readonly DateOnly _today;
     private DateOnly _firstDateOfCalendar;
-    private readonly IReadOnlyList<string> _days;
+    private IReadOnlyList<string>? _days;
     private DateOnly _firstDayOfMonth;
 
     public FullCalendar()
     {
         _today = DateOnly.FromDateTime(DateTime.Today);
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
+    }
+
+    protected override void OnInitialized()
+    {
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
 
