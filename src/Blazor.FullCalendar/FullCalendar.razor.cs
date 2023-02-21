@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Blazor.FullCalendar;
 
-public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalendarEvent : ICalendarEvent, new()
+public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalendarEvent : ICalendarEvent
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
     [Parameter] public bool EnableDistinctFirstDayOfMonth { get; set; } = true;
