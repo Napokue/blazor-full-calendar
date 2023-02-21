@@ -10,7 +10,7 @@
 @code {
   [Parameter] 
   public RenderFragment<TCalendarEvent>? CalendarEventTemplate { get; set; } =
-      item => @<CalendarEventComponent CalendarEvent="item"/>;
+      item => @<CalendarEventComponent CalendarEvent="@item"/>;
 }
 
 <div id="root" class="container" @onwheel="OnWheel">
