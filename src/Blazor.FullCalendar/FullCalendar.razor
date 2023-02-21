@@ -1,6 +1,17 @@
-﻿@using Blazor.FullCalendar.Models
+﻿@using Blazor.FullCalendar.Component
+@using Blazor.FullCalendar.Models
 @using Blazor.FullCalendar.Services
 @using Microsoft.AspNetCore.Components.Web
+
+@inject ICalendarEventFactory CalendarEventFactory;
+
+@typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent, new()
+
+@code {
+  [Parameter] 
+  public RenderFragment<TCalendarEvent>? CalendarEventTemplate { get; set; } =
+      item => @<CalendarEventComponent CalendarEvent="item"/>;
+}
 
 <div id="root" class="container" @onwheel="OnWheel">
     @if (EnableMenu)
@@ -42,7 +53,7 @@
                     
                     @if (_calendarEvents.TryGetValue(day.DayNumber, out var e))
                     {
-                        <div class="event"><span>@e.Title</span></div>
+                        @CalendarEventTemplate(e)
                     }
                 </div>
             }

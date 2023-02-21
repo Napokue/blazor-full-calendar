@@ -1,0 +1,9 @@
+﻿@using Blazor.FullCalendar.Models
+
+<div class="event">
+    <span>@CalendarEvent.Title</span>
+</div>
+
+@code {
+    [Parameter] public ICalendarEvent? CalendarEvent { get; set; }
+}

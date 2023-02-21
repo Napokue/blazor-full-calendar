@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Blazor.FullCalendar;
 
-public partial class FullCalendar : ComponentBase
+public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalendarEvent : ICalendarEvent, new()
 {
     [Parameter] public bool EnableMenu { get; set; } = true;
     [Parameter] public bool EnableDistinctFirstDayOfMonth { get; set; } = true;
@@ -29,7 +29,7 @@ public partial class FullCalendar : ComponentBase
     private DateOnly _firstDayOfMonth;
     
     private IReadOnlyList<string>? _days;
-    private Dictionary<int, CalendarEvent>? _calendarEvents; 
+    private Dictionary<int, TCalendarEvent>? _calendarEvents; 
 
     public FullCalendar()
     {
@@ -38,7 +38,7 @@ public partial class FullCalendar : ComponentBase
 
     protected override void OnInitialized()
     {
-        _calendarEvents = new Dictionary<int, CalendarEvent>();
+        _calendarEvents = new Dictionary<int, TCalendarEvent>();
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
         _days = WeekService.GetDaysBasedOnStartingDay(StartingDay);
     }
@@ -112,10 +112,7 @@ public partial class FullCalendar : ComponentBase
 
     private void OnDayClick(DateOnly date)
     {
-        _calendarEvents.TryAdd(date.DayNumber, new CalendarEvent
-        {
-            Title = $"Test: {date.DayNumber}"
-        });
+        _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) CalendarEventFactory.Create(date));
     }
 
     private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null
