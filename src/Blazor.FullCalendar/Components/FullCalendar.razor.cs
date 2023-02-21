@@ -3,7 +3,7 @@ using Blazor.FullCalendar.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Blazor.FullCalendar;
+namespace Blazor.FullCalendar.Components;
 
 public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalendarEvent : ICalendarEvent
 {
