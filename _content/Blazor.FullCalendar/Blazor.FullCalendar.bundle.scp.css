@@ -2,7 +2,7 @@
 #root[b-j5dehcpm7o] {
     --hairline: rgb(218, 220, 224);
     --background: #fff;
-    --primary: rgb(26,115,232)
+    --primary: rgb(26,115,232);
 }
 
 .container[b-j5dehcpm7o] {
@@ -82,4 +82,17 @@
 
 #btn-today:active[b-j5dehcpm7o] {
     filter: brightness(50%);
+}
+
+.event[b-j5dehcpm7o] {
+    background-color: rgb(3, 155, 229);
+    border-radius: 4px;
+    align-items: center;
+}
+
+.event > span[b-j5dehcpm7o] {
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: 500;
 }
