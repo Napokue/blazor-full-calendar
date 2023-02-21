@@ -82,16 +82,3 @@
 #btn-today:active {
     filter: brightness(50%);
 }
-
-.event {
-    background-color: rgb(3, 155, 229);
-    border-radius: 4px;
-    align-items: center;
-}
-
-.event > span {
-    color: #fff;
-    font-size: 12px;
-    white-space: nowrap;
-    font-weight: 500;
-}
