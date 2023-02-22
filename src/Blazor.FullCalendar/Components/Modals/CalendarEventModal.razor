@@ -1,7 +1,4 @@
-﻿@using System.Reflection
-@using Blazor.FullCalendar.Attributes
-@using Blazor.FullCalendar.Utils
-@typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
+﻿@typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
 <div>
     @foreach (var eventProperty in _calendarEventProperties)
@@ -15,27 +12,3 @@
         <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
     </div>
 </div>
-
-@code {
-
-    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
-
-    [Parameter]
-    public TCalendarEvent CalendarEvent { get; set; } = default!;
-
-    private PropertyInfo[] _calendarEventProperties = default!;
-
-    async Task Create() => await BlazoredModal.CloseAsync(ModalResult.Ok(true));
-    async Task Cancel() => await BlazoredModal.CancelAsync();
-
-    protected override Task OnInitializedAsync()
-    {
-        _calendarEventProperties = CalendarEvent.GetType().ContainsAttribute<CalendarEventFieldAttribute>() 
-            ? CalendarEvent.GetType().GetProperties() 
-            : CalendarEvent.GetType().GetProperties().Where(ReflectionUtils.ContainsAttribute<CalendarEventFieldAttribute>).ToArray();
-
-        return Task.CompletedTask;
-    }
-    
-    
-}
