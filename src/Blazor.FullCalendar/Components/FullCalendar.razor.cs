@@ -1,6 +1,7 @@
 ﻿using Blazor.FullCalendar.Components.Modals;
 using Blazor.FullCalendar.Models;
 using Blazor.FullCalendar.Services;
+using Blazored.Modal;
 using Blazored.Modal.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -114,7 +115,10 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
 
     private async Task OnDayClick(DateOnly date)
     {
-        var modalResult = await Modal.Show<CalendarEventModal>("Event").Result;
+        var modalResult = await Modal.Show<CalendarEventModal<CalendarEvent>>("Event", new ModalParameters
+        {
+            {"CalendarEvent", new CalendarEvent()}
+        }).Result;
         if (modalResult.Confirmed)
         {
             _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) CalendarEventFactory.Create(date));
