@@ -58,3 +58,27 @@
     background-color: var(--primary);
     border-radius: 50%;    
 }
+
+.menu {
+    display: flex;
+    flex: 1 1 100%;
+    vertical-align: middle;
+    align-items: center;
+}
+
+#btn-today {
+    height: 36px;
+    margin: 0 12px;
+    padding: 0 12px;
+    background-color: transparent;
+    border: var(--hairline) 1px solid;;
+    border-radius: 4px;
+}
+
+#btn-today:hover {
+    filter: brightness(90%);
+}
+
+#btn-today:active {
+    filter: brightness(50%);
+}
