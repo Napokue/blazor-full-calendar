@@ -1,0 +1,13 @@
+﻿<div>
+    <button @onclick="Create" class="btn btn-primary">Create</button>
+    <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
+</div>
+
+@code {
+
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+    async Task Create() => await BlazoredModal.CloseAsync(ModalResult.Ok(true));
+    async Task Cancel() => await BlazoredModal.CancelAsync();
+
+}

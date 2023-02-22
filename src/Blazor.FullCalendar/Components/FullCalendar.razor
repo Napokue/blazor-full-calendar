@@ -1,8 +1,10 @@
 ﻿@using Blazor.FullCalendar.Models
 @using Blazor.FullCalendar.Services
+@using Blazored.Modal.Services
 @using Microsoft.AspNetCore.Components.Web
 
 @inject ICalendarEventFactory CalendarEventFactory;
+@inject IModalService Modal;
 
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
@@ -12,50 +14,52 @@
       item => @<CalendarEventComponent CalendarEvent="@item"/>;
 }
 
-<div id="root" class="container" @onwheel="OnWheel">
-    @if (EnableMenu)
-    {
-        <div class="menu">
-            <button id="btn-today" @onclick="NavigateToToday">Today</button>
-            <h1>@SetMenuDateDisplayInternal()</h1>
-        </div>
-    }
-    <div class="row">
-        @foreach (var day in _days)
+<CascadingBlazoredModal>
+    <div id="root" class="container" @onwheel="OnWheel">
+        @if (EnableMenu)
         {
-            <div class="header">@day</div>
+            <div class="menu">
+                <button id="btn-today" @onclick="NavigateToToday">Today</button>
+                <h1>@SetMenuDateDisplayInternal()</h1>
+            </div>
         }
-    </div>
-    @for (var w = 0; w < AmountOfDisplayedWeeks; w++)
-    {
         <div class="row">
-            @for (var d = 0; d < AmountOfDisplayedDays; d++)
+            @foreach (var day in _days)
             {
-                var day = CalculateDay(w, d);
-                var todayClass = string.Empty;
-                <div class="item" @onclick="() => OnDayClick(day)">
-                    @if (EnableHighlightToday)
-                    {
-                        todayClass = _today.DayNumber == day.DayNumber ? "today" : string.Empty;
-                    }
-                    
-                    <h2 class="@todayClass">
-                        @if (EnableDistinctFirstDayOfMonth && day.Day == 1)
-                        {
-                            @SetFirstDayOfMonthDisplayInternal(day)
-                        }
-                        else
-                        {
-                            @SetDayDisplayInternal(day)
-                        }
-                    </h2>
-                    
-                    @if (_calendarEvents.TryGetValue(day.DayNumber, out var e))
-                    {
-                        @CalendarEventTemplate(e)
-                    }
-                </div>
+                <div class="header">@day</div>
             }
         </div>
-    }
-</div>
+        @for (var w = 0; w < AmountOfDisplayedWeeks; w++)
+        {
+            <div class="row">
+                @for (var d = 0; d < AmountOfDisplayedDays; d++)
+                {
+                    var day = CalculateDay(w, d);
+                    var todayClass = string.Empty;
+                    <div class="item" @onclick="async () => await OnDayClick(day)">
+                        @if (EnableHighlightToday)
+                        {
+                            todayClass = _today.DayNumber == day.DayNumber ? "today" : string.Empty;
+                        }
+                    
+                        <h2 class="@todayClass">
+                            @if (EnableDistinctFirstDayOfMonth && day.Day == 1)
+                            {
+                                @SetFirstDayOfMonthDisplayInternal(day)
+                            }
+                            else
+                            {
+                                @SetDayDisplayInternal(day)
+                            }
+                        </h2>
+                    
+                        @if (_calendarEvents.TryGetValue(day.DayNumber, out var e))
+                        {
+                            @CalendarEventTemplate(e)
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</CascadingBlazoredModal>

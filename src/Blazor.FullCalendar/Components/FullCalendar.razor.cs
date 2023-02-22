@@ -1,5 +1,7 @@
-﻿using Blazor.FullCalendar.Models;
+﻿using Blazor.FullCalendar.Components.Modals;
+using Blazor.FullCalendar.Models;
 using Blazor.FullCalendar.Services;
+using Blazored.Modal.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -110,9 +112,13 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
         _firstDateOfCalendar = CalculateFirstDateOfCalendar(_today);
     }
 
-    private void OnDayClick(DateOnly date)
+    private async Task OnDayClick(DateOnly date)
     {
-        _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) CalendarEventFactory.Create(date));
+        var modalResult = await Modal.Show<CalendarEventModal>("Event").Result;
+        if (modalResult.Confirmed)
+        {
+            _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) CalendarEventFactory.Create(date));
+        }
     }
 
     private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null
