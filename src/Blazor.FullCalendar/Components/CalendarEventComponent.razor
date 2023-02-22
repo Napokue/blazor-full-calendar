@@ -5,5 +5,6 @@
 </div>
 
 @code {
-    [Parameter] public ICalendarEvent? CalendarEvent { get; set; }
+    [Parameter]
+    public ICalendarEvent CalendarEvent { get; set; } = default!;
 }

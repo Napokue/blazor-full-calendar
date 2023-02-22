@@ -27,9 +27,9 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
     private readonly DateOnly _today;
     private DateOnly _firstDateOfCalendar;
     private DateOnly _firstDayOfMonth;
-    
-    private IReadOnlyList<string>? _days;
-    private Dictionary<int, TCalendarEvent>? _calendarEvents; 
+
+    private IReadOnlyList<string> _days = default!;
+    private Dictionary<int, TCalendarEvent> _calendarEvents = default!; 
 
     public FullCalendar()
     {
