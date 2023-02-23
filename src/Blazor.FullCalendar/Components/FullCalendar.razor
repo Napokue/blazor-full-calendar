@@ -6,12 +6,20 @@
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
 @code {
-  [Parameter] 
-  public RenderFragment<TCalendarEvent> CalendarEventTemplate { get; set; } =
-      item => @<CalendarEventComponent CalendarEvent="@item"/>;
+    [Parameter] 
+    public RenderFragment<TCalendarEvent> CalendarEventTemplate { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (CalendarEventTemplate == null)
+        {
+            CalendarEventTemplate = (item) => @<CalendarEventComponent TCalendarEvent="TCalendarEvent" CalendarEvent="@item" CalendarEventEdited="CalendarEventEdited"/>;
+        }
+        return Task.CompletedTask;
+    }
 }
 
-<CascadingBlazoredModal>
+<CascadingBlazoredModal DisableBackgroundCancel="true">
     <div id="root" class="container" @onwheel="OnWheel">
         @if (EnableMenu)
         {

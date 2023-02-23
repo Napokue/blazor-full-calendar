@@ -10,3 +10,7 @@
     white-space: nowrap;
     font-weight: 500;
 }
+
+.event:hover {
+    cursor: pointer;
+}

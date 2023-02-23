@@ -19,8 +19,8 @@ public partial class CalendarEventModal<TCalendarEvent> : ComponentBase where TC
 
     private PropertyInfo[] _calendarEventProperties = default!;
 
-    async Task Create() => await BlazoredModal.CloseAsync(ModalResult.Ok(CalendarEvent, typeof(TCalendarEvent)));
-    async Task Cancel() => await BlazoredModal.CancelAsync();
+    private async Task Close() => await BlazoredModal.CloseAsync(ModalResult.Ok(CalendarEvent, typeof(TCalendarEvent)));
+    private async Task Cancel() => await BlazoredModal.CancelAsync();
 
     protected override Task OnInitializedAsync()
     {

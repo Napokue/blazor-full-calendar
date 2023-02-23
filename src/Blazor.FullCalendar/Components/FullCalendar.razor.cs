@@ -17,6 +17,7 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
     [Parameter] public Func<DateOnly, string>? SetFirstDayOfMonthDisplay { get; set; }
     [Parameter] public Func<DateOnly, string>? SetDayDisplay { get; set; }
     [Parameter] public DayOfWeek StartingDay { get; set; } = DayOfWeek.Sunday;
+    
 
     /// <summary>
     /// The maximum amount of days that need to be displayed in a
@@ -119,7 +120,11 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
 
         var modalResult = await Modal.Show<CalendarEventModal<TCalendarEvent>>("Event", new ModalParameters
         {
-            {"CalendarEvent", calendarEvent}
+            {"CalendarEvent", calendarEvent},
+            {"ButtonCloseText", "Create"}
+        }, new ModalOptions
+        {
+            Size = ModalSize.Medium
         }).Result;
         
         if (modalResult.Confirmed &&
@@ -128,6 +133,16 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
         {
             _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) modalResult.Data);
         }
+    }
+
+    void CalendarEventEdited(TCalendarEvent calendarEvent)
+    {
+        if (!_calendarEvents.ContainsKey(calendarEvent.DayNumber))
+        {
+            return;
+        }
+        
+        _calendarEvents[calendarEvent.DayNumber] = calendarEvent;
     }
 
     private string SetMenuDateDisplayInternal() => SetMenuDateDisplay != null

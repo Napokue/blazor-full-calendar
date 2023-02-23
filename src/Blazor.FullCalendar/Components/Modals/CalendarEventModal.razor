@@ -2,6 +2,15 @@
 
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
+@code
+{
+    [Parameter]
+    public string? ButtonCloseText { get; set; } = "Close";
+
+    [Parameter]
+    public string? ButtonCancelText { get; set; } = "Cancel";
+}
+
 <EditForm Model="CalendarEvent">
     @for (var i = 0; i < _calendarEventProperties.Length; i++)
     {
@@ -13,7 +22,6 @@
             TabIndex = i
         })
     }
-    <button @onclick="Create" class="btn btn-primary">Create</button>
-    <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
+    <button @onclick="Close" class="btn btn-primary">@ButtonCloseText</button>
+    <button @onclick="Cancel" class="btn btn-secondary">@ButtonCancelText</button>
 </EditForm>
-
