@@ -115,13 +115,18 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
 
     private async Task OnDayClick(DateOnly date)
     {
+        var calendarEvent = (TCalendarEvent) CalendarEventFactory.Create(date);
+
         var modalResult = await Modal.Show<CalendarEventModal<CalendarEvent>>("Event", new ModalParameters
         {
-            {"CalendarEvent", new CalendarEvent()}
+            {"CalendarEvent", calendarEvent}
         }).Result;
-        if (modalResult.Confirmed)
+        
+        if (modalResult.Confirmed &&
+            modalResult.DataType == typeof(TCalendarEvent) &&
+            modalResult.Data != null)
         {
-            _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) CalendarEventFactory.Create(date));
+            _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) modalResult.Data);
         }
     }
 

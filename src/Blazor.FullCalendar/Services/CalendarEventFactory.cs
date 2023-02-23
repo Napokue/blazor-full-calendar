@@ -8,8 +8,7 @@ public class CalendarEventFactory : ICalendarEventFactory
     {
         return new CalendarEvent
         {
-            DayNumber = day.DayNumber,
-            Title = $"Test {day.DayNumber}"
+            DayNumber = day.DayNumber
         };
     }
 }
