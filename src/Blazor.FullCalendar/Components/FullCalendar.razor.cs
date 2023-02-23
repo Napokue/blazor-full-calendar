@@ -117,7 +117,7 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
     {
         var calendarEvent = (TCalendarEvent) CalendarEventFactory.Create(date);
 
-        var modalResult = await Modal.Show<CalendarEventModal<CalendarEvent>>("Event", new ModalParameters
+        var modalResult = await Modal.Show<CalendarEventModal<TCalendarEvent>>("Event", new ModalParameters
         {
             {"CalendarEvent", calendarEvent}
         }).Result;
