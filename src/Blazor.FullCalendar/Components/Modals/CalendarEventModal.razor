@@ -3,12 +3,17 @@
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
 <EditForm Model="CalendarEvent">
-        @foreach (var property in _calendarEventProperties)
+    @foreach (var property in _calendarEventProperties)
+    {
+        @_createInputField(new CalendarEventProperty
         {
-             @_createInputField(new CalendarEventProperty
-             {
-                 Property = property,
-                 EventInstance = CalendarEvent
-             })
-        }
+            Property = property,
+            EventInstance = CalendarEvent
+        })
+    }
+    
+        
+    <button @onclick="Create" class="btn btn-primary">Create</button>
+    <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>        
 </EditForm>
+
