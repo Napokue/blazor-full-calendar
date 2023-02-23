@@ -2,6 +2,6 @@
 
 public interface ICalendarEvent
 {
-    public string? Title { get; init; }
+    public string? Title { get; set; }
     public int DayNumber { get; init; }
 }

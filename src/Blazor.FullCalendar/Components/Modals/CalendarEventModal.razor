@@ -1,14 +1,14 @@
-﻿@typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
+﻿@using Microsoft.AspNetCore.Components.Forms;
 
-<div>
-    @foreach (var eventProperty in _calendarEventProperties)
-    {
-        <label for="@eventProperty.Name">@eventProperty.Name</label>
-        <input id="@eventProperty.Name" name="@eventProperty.Name" type="text" />
-    }
+@typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
-    <div>
-        <button @onclick="Create" class="btn btn-primary">Create</button>
-        <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
-    </div>
-</div>
+<EditForm Model="CalendarEvent">
+        @foreach (var property in _calendarEventProperties)
+        {
+             @_createInputField(new CalendarEventProperty
+             {
+                 Property = property,
+                 EventInstance = CalendarEvent
+             })
+        }
+</EditForm>
