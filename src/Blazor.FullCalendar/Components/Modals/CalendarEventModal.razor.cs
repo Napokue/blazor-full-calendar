@@ -36,13 +36,12 @@ public partial class CalendarEventModal<TCalendarEvent> : ComponentBase where TC
             var property = calendarEventProperty.Property;
             var eventInstance = calendarEventProperty.EventInstance;
             var propertyName = $"{nameof(CalendarEvent)}.{property.Name}";
-
+            Expression<Func<string>> propertyNameExp = () => propertyName;
             builder.OpenComponent<InputText>(0);
             builder.AddAttribute(0, "Value", property.GetValue(eventInstance));
             builder.AddAttribute(0, "ValueChanged", CreateInputFieldEventCallback<string>(calendarEventProperty));
-            Expression<Func<string>> a = () => propertyName;
-            builder.AddAttribute(0, "ValueExpression", a);
-            
+            builder.AddAttribute(0, "ValueExpression", propertyNameExp);
+            builder.AddAttribute(0, "tabindex", calendarEventProperty.TabIndex);
             builder.CloseComponent();
         };
 
@@ -58,5 +57,6 @@ public partial class CalendarEventModal<TCalendarEvent> : ComponentBase where TC
     {
         public TCalendarEvent EventInstance { get; init; } = default!;
         public PropertyInfo Property { get; init; } = default!;
+        public int TabIndex { get; init; } = default!;
     }
 }
