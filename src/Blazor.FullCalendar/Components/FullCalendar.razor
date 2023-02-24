@@ -13,7 +13,12 @@
     {
         if (CalendarEventTemplate == null)
         {
-            CalendarEventTemplate = (item) => @<CalendarEventComponent TCalendarEvent="TCalendarEvent" CalendarEvent="@item" CalendarEventEdited="CalendarEventEdited"/>;
+            CalendarEventTemplate = (item) => 
+                @<CalendarEventComponent
+                     TCalendarEvent="TCalendarEvent" 
+                     CalendarEvent="@item" 
+                     CalendarEventEdited="CalendarEventEdited"
+                     CalendarEventRemoved="CalendarEventRemoved"/>;
         }
         return Task.CompletedTask;
     }

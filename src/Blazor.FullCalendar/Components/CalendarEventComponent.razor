@@ -3,7 +3,7 @@
 
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
-<div class="event" @onclick="ShowEditModal" @onclick:stopPropagation="true">
+<div class="event" @onclick="OnLeftClick" @onclick:stopPropagation="true" @oncontextmenu="OnRightClick" @oncontextmenu:preventDefault="true">
     <span>@CalendarEvent.Title</span>
 </div>
 
@@ -15,6 +15,12 @@
     
     [Parameter]
     public EventCallback<TCalendarEvent> CalendarEventEdited { get; set; }
+    
+    [Parameter]
+    public EventCallback<TCalendarEvent> CalendarEventRemoved { get; set; }
+
+    private async Task OnLeftClick() => await ShowEditModal();
+    private async Task OnRightClick() => await RemoveCalendarEvent();
 
     private async Task ShowEditModal()
     {
@@ -38,4 +44,11 @@
         }
     }
 
+    private async Task RemoveCalendarEvent()
+    {
+        if (CalendarEventRemoved is {HasDelegate:true} calendarEventRemoveRequested)
+        {
+            await calendarEventRemoveRequested.InvokeAsync(CalendarEvent);
+        }
+    }
 }
