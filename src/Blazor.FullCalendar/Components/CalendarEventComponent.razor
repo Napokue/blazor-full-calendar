@@ -8,47 +8,28 @@
 </div>
 
 @code {
-    [CascadingParameter] IModalService Modal { get; set; } = default!;
-    
     [Parameter]
     public TCalendarEvent CalendarEvent { get; set; } = default!;
     
     [Parameter]
-    public EventCallback<TCalendarEvent> CalendarEventEdited { get; set; }
+    public EventCallback<TCalendarEvent> EventLeftClicked { get; set; }
     
     [Parameter]
-    public EventCallback<TCalendarEvent> CalendarEventRemoved { get; set; }
+    public EventCallback<TCalendarEvent> EventRightClicked { get; set; }
 
-    private async Task OnLeftClick() => await ShowEditModal();
-    private async Task OnRightClick() => await RemoveCalendarEvent();
-
-    private async Task ShowEditModal()
+    private async Task OnLeftClick()
     {
-        var editCalendarEvent = (ICalendarEvent) CalendarEvent.Clone();
-        var modalReference = Modal.Show<CalendarEventModal<TCalendarEvent>>("Event", new ModalParameters
+        if (EventLeftClicked is { HasDelegate: true} eventLeftClicked)
         {
-            {"CalendarEvent", editCalendarEvent},
-            {"ButtonCloseText", "Save"}
-        }, new ModalOptions
-        {
-            ActivateFocusTrap = true
-        });
-        var modalResult = await modalReference.Result;
-
-        if (modalResult is {Confirmed: true, Data: not null} && modalResult.DataType == typeof(TCalendarEvent))
-        {
-            if (CalendarEventEdited is {HasDelegate: true } calendarEventEdited)
-            {
-                await calendarEventEdited.InvokeAsync((TCalendarEvent?) modalResult.Data);
-            }
+            await eventLeftClicked.InvokeAsync(CalendarEvent);
         }
     }
 
-    private async Task RemoveCalendarEvent()
+    private async Task OnRightClick()
     {
-        if (CalendarEventRemoved is {HasDelegate:true} calendarEventRemoveRequested)
+        if (EventRightClicked is { HasDelegate: true } eventRightClicked)
         {
-            await calendarEventRemoveRequested.InvokeAsync(CalendarEvent);
+            await eventRightClicked.InvokeAsync(CalendarEvent);
         }
     }
 }

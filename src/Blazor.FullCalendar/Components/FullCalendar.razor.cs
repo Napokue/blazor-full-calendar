@@ -133,8 +133,27 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
             _calendarEvents.TryAdd(date.DayNumber, (TCalendarEvent) modalResult.Data);
         }
     }
+    
+    private async Task ShowEditModal(TCalendarEvent calendarEvent)
+    {
+        var editCalendarEvent = (TCalendarEvent) calendarEvent.Clone();
+        var modalReference = Modal.Show<CalendarEventModal<TCalendarEvent>>("Event", new ModalParameters
+        {
+            {"CalendarEvent", editCalendarEvent},
+            {"ButtonCloseText", "Save"}
+        }, new ModalOptions
+        {
+            ActivateFocusTrap = true
+        });
+        var modalResult = await modalReference.Result;
 
-    private void CalendarEventEdited(TCalendarEvent calendarEvent)
+        if (modalResult is {Confirmed: true, Data: not null} && modalResult.DataType == typeof(TCalendarEvent))
+        {
+            UpdateEvent((TCalendarEvent) modalResult.Data);
+        }
+    }
+
+    private void UpdateEvent(TCalendarEvent calendarEvent)
     {
         if (!_calendarEvents.ContainsKey(calendarEvent.DayNumber))
         {
@@ -144,7 +163,7 @@ public partial class FullCalendar<TCalendarEvent> : ComponentBase where TCalenda
         _calendarEvents[calendarEvent.DayNumber] = calendarEvent;
     }
 
-    private void CalendarEventRemoved(TCalendarEvent calendarEvent)
+    private void RemoveEvent(TCalendarEvent calendarEvent)
     {
         _calendarEvents.Remove(calendarEvent.DayNumber);
     }

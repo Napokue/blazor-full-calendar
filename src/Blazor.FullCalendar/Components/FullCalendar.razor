@@ -6,19 +6,20 @@
 @typeparam TCalendarEvent where TCalendarEvent : ICalendarEvent
 
 @code {
-    [Parameter] 
-    public RenderFragment<TCalendarEvent> CalendarEventTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<TCalendarEvent>? CalendarEventTemplate { get; set; }
 
     protected override Task OnInitializedAsync()
     {
         if (CalendarEventTemplate == null)
         {
-            CalendarEventTemplate = (item) => 
+            CalendarEventTemplate = item => 
                 @<CalendarEventComponent
                      TCalendarEvent="TCalendarEvent" 
                      CalendarEvent="@item" 
-                     CalendarEventEdited="CalendarEventEdited"
-                     CalendarEventRemoved="CalendarEventRemoved"/>;
+                     EventLeftClicked="ShowEditModal"
+                     EventRightClicked="RemoveEvent"/>;
         }
         return Task.CompletedTask;
     }
